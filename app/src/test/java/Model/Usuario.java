@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Usuario {
     private String email;
-    private int id;
+    private int idUsuario;
     private String login;
     private String nome;
     private String senha;
@@ -16,9 +16,9 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String email, int id, String login, String nome, String senha, String token, CartaoCredito cartao) {
+    public Usuario(String email, int idUsuario, String login, String nome, String senha, String token, CartaoCredito cartao) {
         this.email = email;
-        this.id = id;
+        this.idUsuario = idUsuario;
         this.login = login;
         this.nome = nome;
         this.senha = senha;
@@ -35,12 +35,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public int getId() {
-        return id;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getLogin() {
