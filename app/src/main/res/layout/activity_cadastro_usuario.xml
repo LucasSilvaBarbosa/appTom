@@ -110,21 +110,19 @@
             android:layout_height="138dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imgUsuarioVoltar"
+            <Button
+                android:id="@+id/btnVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@drawable/back" />
+                android:text="Voltar" />
 
-            <ImageButton
-                android:id="@+id/imgUsuarioSalvar"
+            <Button
+                android:id="@+id/btnGravar"
                 android:layout_width="wrap_content"
-                android:layout_height="86dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@drawable/save" />
+                android:text="Gravar" />
         </LinearLayout>
 
     </LinearLayout>

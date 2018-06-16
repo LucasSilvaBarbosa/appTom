@@ -2,6 +2,8 @@ package com.example.lucas.apptom.service;
 
 import android.os.AsyncTask;
 
+import com.example.lucas.apptom.Model.Usuario;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
