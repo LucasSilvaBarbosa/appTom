@@ -1,4 +1,4 @@
-package service;
+package com.example.lucas.apptom.service;
 
 import android.os.AsyncTask;
 
@@ -11,11 +11,9 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import Model.Usuario;
-
-public class NovoUsuarioService extends AsyncTask<Usuario,Void,String> {
+public class NovoUsuarioService extends AsyncTask<String,Void,String> {
     @Override
-    protected String doInBackground(Usuario... usuarios) {
+    protected String doInBackground(String... param) {
 
         URL url = null;
         try {
@@ -30,12 +28,6 @@ public class NovoUsuarioService extends AsyncTask<Usuario,Void,String> {
             urlConnection.setRequestProperty("Accept", "application/json");
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("X-Environment", "android");
-
-            // Create the data
-            String login = "{\"login\": \"zeze\"," +
-                    "\"senha\": \"123\" }";
-            urlConnection.setDoOutput(true);
-            urlConnection.getOutputStream().write(login.getBytes());
 
             urlConnection.connect();
 

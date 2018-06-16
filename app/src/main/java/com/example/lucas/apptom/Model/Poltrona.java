@@ -1,4 +1,6 @@
-package Model;
+package com.example.lucas.apptom.Model;
+
+import com.example.lucas.apptom.Model.Usuario;
 
 public class Poltrona {
 

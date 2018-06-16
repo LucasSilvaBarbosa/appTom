@@ -1,4 +1,4 @@
-package Model;
+package com.example.lucas.apptom.Model;
 
 public class Destino {
 
