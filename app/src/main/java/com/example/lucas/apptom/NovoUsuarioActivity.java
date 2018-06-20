@@ -6,9 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.lucas.apptom.Model.Usuario;
 import com.example.lucas.apptom.service.NovoUsuarioService;
+
+import java.util.concurrent.ExecutionException;
 
 public class NovoUsuarioActivity extends AppCompatActivity {
 
@@ -33,17 +36,26 @@ public class NovoUsuarioActivity extends AppCompatActivity {
         Inserir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NovoUsuarioService nus = new NovoUsuarioService();
+                try {
+                    NovoUsuarioService nus = new NovoUsuarioService();
 
-                Usuario u = new Usuario();
-                u.setNome(edtNome.getText().toString());
-                u.setLogin(edtLogin.getText().toString());
-                u.setEmail(edtEmail.getText().toString());
-                u.setSenha(edtSenha.getText().toString());
+                    Usuario user = new Usuario();
 
-                nus.execute(u.getNome(),u.getLogin(),u.getSenha(),u.getEmail());
+                    user = nus.execute(edtNome.getText().toString(), edtLogin.getText().toString(), edtEmail.getText().toString(), edtSenha.getText().toString()).get();
 
-                finish();
+                    if(user != null){
+                        Toast.makeText(getApplicationContext(), "Logou: " + user.getNome(), Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Não Logou " , Toast.LENGTH_SHORT).show();
+                    }
+                    finish();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
 
 
             }
