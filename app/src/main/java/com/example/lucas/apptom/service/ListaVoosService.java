@@ -2,39 +2,40 @@ package com.example.lucas.apptom.service;
 
 import android.os.AsyncTask;
 
+import com.example.lucas.apptom.Model.Voo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class LoginService extends AsyncTask<String,Void,String> {
+public class ListaVoosService extends AsyncTask<String,Void,List<Voo>> {
     @Override
-    protected String doInBackground(String... param) {
+    protected List<Voo> doInBackground(String... param) {
 
         // Create URL
         URL url = null;
         try {
-            url = new URL("https://service.davesmartins.com.br/api/usuarios/login");
-            //url = new URL("http://localhost:8080/api/usuarios/login");
+            url = new URL("https://service.davesmartins.com.br/api/voo");
 
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestMethod("GET");
             urlConnection.setReadTimeout(95 * 1000);
             urlConnection.setConnectTimeout(95 * 1000);
             urlConnection.setDoInput(true);
             urlConnection.setRequestProperty("Accept", "application/json");
             urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.setRequestProperty("code", param[0]);
             urlConnection.setRequestProperty("X-Environment", "android");
-
-            // Create the data
-            String login = "{\"login\": \""+param[0]+"\"," +
-                    "\"senha\": \""+param[1] + "\" }";
-            urlConnection.setDoOutput(true);
-            urlConnection.getOutputStream().write(login.getBytes());
 
             urlConnection.connect();
 
@@ -55,12 +56,16 @@ public class LoginService extends AsyncTask<String,Void,String> {
                 finalJson = urlConnection.getResponseCode()+"";
             }
 
-            return finalJson;
+            Type listType = new TypeToken<List<Voo>>() {}.getType();
+
+            List<Voo> lista = new Gson().fromJson(finalJson.toString(),listType);
+
+            return lista;
 
         } catch (MalformedURLException e) {
-            return "Erro1: "+e.getMessage();
+            return null;
         } catch (IOException e) {
-            return "Erro2: "+e.getMessage();
+            return null;
         }
 
     }

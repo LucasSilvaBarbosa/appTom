@@ -6,12 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.example.lucas.apptom.Model.Usuario;
+import com.example.lucas.apptom.service.LoginService;
+
+import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
 
     ImageButton imgLogar,imgNovoUsuario;
     EditText edtlogin,senha;
     final static int Tela_Principal = 15;
+    String resp,token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,33 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         
         binding();
+
+        imgLogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginService login = new LoginService();
+                try {
+                    resp = login.execute(edtlogin.getText().toString(), senha.getText().toString()).get();
+                    token = resp.substring(resp.indexOf("token") + 8, resp.indexOf("}") - 1);
+                    if (token != "") {
+                        Intent itn = new Intent(getApplicationContext(),ListaVoosActivity.class);
+
+                        itn.putExtra("token",token);
+
+                        startActivityForResult(itn,Tela_Principal);
+
+                        Toast.makeText(getApplicationContext(), "Logou com sucesso", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Não Logou ", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
 
         imgNovoUsuario.setOnClickListener(new View.OnClickListener() {
