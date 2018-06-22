@@ -21,8 +21,7 @@ import java.util.concurrent.ExecutionException;
 
 public class VooActivity extends AppCompatActivity {
 
-    String token,resp = "";
-    String idVoo;
+    String token,idVoo;
     Voo voo;
     List<Poltrona> lista;
     TextView txtVooAviao,txtVooData,txtVooOrigem,txtVooDestino,txtVooValor;
@@ -63,20 +62,15 @@ public class VooActivity extends AppCompatActivity {
 
             lista = poltronas.execute(idVoo,token).get();
 
-        } catch(Exception e){
+        } catch(Exception e) {
             Toast.makeText(getApplicationContext(), "Erro no Serviço", Toast.LENGTH_SHORT).show();
         }
-        List<Poltrona> vazias = new ArrayList<>();
-        for(Poltrona p : lista){
-            if(p.isOcupado() == false){
-                vazias.add(p);
-            }
-        }
-        String [] vet = new String [vazias.size()];
+        String [] vet = new String [lista.size()];
         int i = 0;
-        for(Poltrona p: vazias){
+        for(Poltrona p : lista){
                 vet[i++] = p.getAssento();
         }
+
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,vet);
 
         lstListaPoltronas.setAdapter(adapter);
@@ -84,7 +78,7 @@ public class VooActivity extends AppCompatActivity {
         lstListaPoltronas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String pol = lista.get(position).getId();
+                String pol = lista.get(position).getAssento();
 
                 Intent itn = new Intent(getApplicationContext(),CompraPoltronaActivity.class);
 
