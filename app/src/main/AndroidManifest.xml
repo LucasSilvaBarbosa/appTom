@@ -27,7 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".NovoUsuarioActivity" />
-        <activity android:name=".ListaVoosActivity"></activity>
+        <activity android:name=".ListaVoosActivity" />
+        <activity android:name=".VooActivity"></activity>
     </application>
 
 </manifest>

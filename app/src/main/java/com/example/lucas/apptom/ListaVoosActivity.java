@@ -1,7 +1,10 @@
 package com.example.lucas.apptom;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,6 +18,9 @@ public class ListaVoosActivity extends AppCompatActivity {
 
     ListView lstVoos;
     List<Voo> voos;
+    String token,resp = "";
+
+    final static int Tela_Lista_Voos = 20;
 
 
     @Override
@@ -24,7 +30,7 @@ public class ListaVoosActivity extends AppCompatActivity {
 
         binding();
 
-        String token = getIntent().getExtras().getString("token");
+        token = getIntent().getExtras().getString("token");
 
         ListaVoosService listavoos = new ListaVoosService();
 
@@ -44,6 +50,20 @@ public class ListaVoosActivity extends AppCompatActivity {
 
         lstVoos.setAdapter(adapter);
 
+        lstVoos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                      String voo = voos.get(position).getIdVoo();
+
+                      Intent itn = new Intent(getApplicationContext(),VooActivity.class);
+
+                      itn.putExtra("voo",voo);
+                      itn.putExtra("token",token);
+
+                      startActivityForResult(itn,Tela_Lista_Voos);
+
+            }
+        });
 
     }
 

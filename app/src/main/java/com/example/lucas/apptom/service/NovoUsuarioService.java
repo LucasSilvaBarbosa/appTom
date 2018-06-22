@@ -34,7 +34,6 @@ public class NovoUsuarioService extends AsyncTask<String,Void,Usuario> {
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("X-Environment", "android");
 
-            //String usuario = "{\"email\": "+param[0]
             urlConnection.connect();
 
             Scanner s = new Scanner(url.openStream());

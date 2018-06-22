@@ -1,7 +1,7 @@
 package com.example.lucas.apptom.Model;
 
 public class Voo {
-    private int idVoo;
+    private String idVoo;
     private Origem origem;
     private Destino destino;
     private String datavoo;
@@ -11,7 +11,7 @@ public class Voo {
     public Voo() {
     }
 
-    public Voo(int idVoo, Origem origem, Destino destino, String datavoo, double valor, Aviao aviao) {
+    public Voo(String idVoo, Origem origem, Destino destino, String datavoo, double valor, Aviao aviao) {
         this.idVoo = idVoo;
         this.origem = origem;
         this.destino = destino;
@@ -20,11 +20,11 @@ public class Voo {
         this.aviao = aviao;
     }
 
-    public int getIdVoo() {
+    public String getIdVoo() {
         return idVoo;
     }
 
-    public void setIdVoo(int idVoo) {
+    public void setIdVoo(String idVoo) {
         this.idVoo = idVoo;
     }
 
