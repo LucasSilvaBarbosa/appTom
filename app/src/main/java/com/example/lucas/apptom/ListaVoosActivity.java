@@ -18,7 +18,7 @@ public class ListaVoosActivity extends AppCompatActivity {
 
     ListView lstVoos;
     List<Voo> voos;
-    String token,resp = "";
+    String token;
 
     final static int Tela_Lista_Voos = 20;
 
@@ -54,7 +54,7 @@ public class ListaVoosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                      String voo = voos.get(position).getIdVoo();
+                      String voo = voos.get(position).getId();
 
                       Intent itn = new Intent(getApplicationContext(),VooActivity.class);
 

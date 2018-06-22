@@ -28,7 +28,8 @@
         </activity>
         <activity android:name=".NovoUsuarioActivity" />
         <activity android:name=".ListaVoosActivity" />
-        <activity android:name=".VooActivity"></activity>
+        <activity android:name=".VooActivity" />
+        <activity android:name=".CompraPoltronaActivity"></activity>
     </application>
 
 </manifest>

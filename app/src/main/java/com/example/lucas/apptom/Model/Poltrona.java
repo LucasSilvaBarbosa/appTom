@@ -4,7 +4,7 @@ import com.example.lucas.apptom.Model.Usuario;
 
 public class Poltrona {
 
-    private int idPoltrona;
+    private String id;
     private String assento;
     private boolean ocupado;
     private Usuario usuario;
@@ -12,19 +12,19 @@ public class Poltrona {
     public Poltrona() {
     }
 
-    public Poltrona(int idPoltrona, String assento, boolean ocupado, Usuario usuario) {
-        this.idPoltrona = idPoltrona;
+    public Poltrona(String id, String assento, boolean ocupado, Usuario usuario) {
+        this.id = id;
         this.assento = assento;
         this.ocupado = ocupado;
         this.usuario = usuario;
     }
 
-    public int getIdPoltrona() {
-        return idPoltrona;
+    public String getId() {
+        return id;
     }
 
-    public void setIdPoltrona(int idPoltrona) {
-        this.idPoltrona = idPoltrona;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAssento() {

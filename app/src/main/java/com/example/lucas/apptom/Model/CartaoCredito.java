@@ -2,8 +2,8 @@ package com.example.lucas.apptom.Model;
 
 public class CartaoCredito {
 
-    private int idCartao;
-    private String numeroCartao;
+    private String id;
+    private String cartao;
     private int mes;
     private int ano;
     private String tarja;
@@ -12,29 +12,29 @@ public class CartaoCredito {
     public CartaoCredito() {
     }
 
-    public CartaoCredito(int idCartao, String numeroCartao, int mes, int ano, String tarja, double valor) {
-        this.idCartao = idCartao;
-        this.numeroCartao = numeroCartao;
+    public CartaoCredito(String id, String cartao, int mes, int ano, String tarja, double valor) {
+        this.id = id;
+        this.cartao = cartao;
         this.mes = mes;
         this.ano = ano;
         this.tarja = tarja;
         this.valor = valor;
     }
 
-    public int getIdCartao() {
-        return idCartao;
+    public String getId() {
+        return id;
     }
 
-    public void setIdCartao(int idCartao) {
-        this.idCartao = idCartao;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNumeroCartao() {
-        return numeroCartao;
+    public String getCartao() {
+        return cartao;
     }
 
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
+    public void setCartao(String cartao) {
+        this.cartao = cartao;
     }
 
     public int getMes() {
