@@ -53,6 +53,7 @@ public class ListaVoosActivity extends AppCompatActivity {
         lstVoos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                       String voo = voos.get(position).getIdVoo();
 
                       Intent itn = new Intent(getApplicationContext(),VooActivity.class);

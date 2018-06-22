@@ -15,9 +15,9 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 
-    public class VooService extends AsyncTask<String,Void,Voo> {
+    public class VooService extends AsyncTask<String,Void,String> {
         @Override
-        protected Voo doInBackground(String... param) {
+        protected String doInBackground(String... param) {
 
             // Create URL
             URL url = null;
@@ -54,9 +54,7 @@ import javax.net.ssl.HttpsURLConnection;
                             urlConnection.getResponseMessage();
                 }
 
-                Voo voo = new Gson().fromJson(finalJson.toString(),Voo.class);
-
-                return voo;
+                return finalJson;
 
             } catch (MalformedURLException e) {
                 return null;
