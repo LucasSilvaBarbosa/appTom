@@ -34,15 +34,34 @@ public class NovoUsuarioService extends AsyncTask<String,Void,Usuario> {
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("X-Environment", "android");
 
+            String login = "{\"email\": \""+param[0]+"\"," +
+                    "\"login\": \""+param[1] + "\"," +
+                    "\"nome\": \""+param[2] + "\"," +
+                    "\"senha\": \""+param[3] + "\" }";
+
+            urlConnection.setDoOutput(true);
+            urlConnection.getOutputStream().write(login.getBytes());
+
             urlConnection.connect();
 
-            Scanner s = new Scanner(url.openStream());
-            StringBuffer resp = new StringBuffer();
-            while (s.hasNext()) {
-                resp.append(s.next());
+            String finalJson = "";
+            if (urlConnection.getResponseCode() == 200) {
+                InputStream responseBody = urlConnection.getInputStream();
+                InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
+                BufferedReader reader = new BufferedReader(responseBodyReader);
+                StringBuffer buffer = new StringBuffer();
+                String line ="";
+
+                while ((line=reader.readLine())!=null){
+                    buffer.append(line);
+                }
+
+                finalJson = buffer.toString();
+            } else {
+                finalJson = urlConnection.getResponseCode()+"";
             }
 
-            Usuario user = new Gson().fromJson(resp.toString(),Usuario.class);
+            Usuario user = new Gson().fromJson(finalJson.toString(),Usuario.class);
 
             return user;
 

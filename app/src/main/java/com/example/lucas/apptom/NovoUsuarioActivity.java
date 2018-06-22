@@ -39,9 +39,7 @@ public class NovoUsuarioActivity extends AppCompatActivity {
                 try {
                     NovoUsuarioService nus = new NovoUsuarioService();
 
-                    Usuario user = new Usuario();
-
-                    user = nus.execute(edtNome.getText().toString(), edtLogin.getText().toString(), edtEmail.getText().toString(), edtSenha.getText().toString()).get();
+                    Usuario user = nus.execute(edtEmail.getText().toString(), edtLogin.getText().toString(), edtNome.getText().toString(), edtSenha.getText().toString()).get();
 
                     if(user != null){
                         Toast.makeText(getApplicationContext(), "Logou: " + user.getNome(), Toast.LENGTH_SHORT).show();

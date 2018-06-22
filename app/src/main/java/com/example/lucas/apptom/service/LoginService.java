@@ -30,7 +30,6 @@ public class LoginService extends AsyncTask<String,Void,String> {
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.setRequestProperty("X-Environment", "android");
 
-            // Create the data
             String login = "{\"login\": \""+param[0]+"\"," +
                     "\"senha\": \""+param[1] + "\" }";
             urlConnection.setDoOutput(true);
