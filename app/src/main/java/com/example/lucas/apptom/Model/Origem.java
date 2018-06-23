@@ -2,25 +2,25 @@ package com.example.lucas.apptom.Model;
 
 public class Origem {
 
-    private int idDestino;
+    private String id;
     private String aeroporto;
     private String cidade;
 
     public Origem() {
     }
 
-    public Origem(int idDestino, String aeroporto, String cidade) {
-        this.idDestino = idDestino;
+    public Origem(String id, String aeroporto, String cidade) {
+        this.id = id;
         this.aeroporto = aeroporto;
         this.cidade = cidade;
     }
 
-    public int getIdDestino() {
-        return idDestino;
+    public String getId() {
+        return id;
     }
 
-    public void setIdDestino(int idDestino) {
-        this.idDestino = idDestino;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAeroporto() {

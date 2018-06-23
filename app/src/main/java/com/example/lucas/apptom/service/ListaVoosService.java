@@ -22,7 +22,7 @@ public class ListaVoosService extends AsyncTask<String,Void,List<Voo>> {
     @Override
     protected List<Voo> doInBackground(String... param) {
 
-        // Create URL
+
         URL url = null;
         try {
             url = new URL("https://service.davesmartins.com.br/api/voo");

@@ -18,10 +18,11 @@ import javax.net.ssl.HttpsURLConnection;
 public class CartaoCreditoService extends AsyncTask<String,Void,CartaoCredito> {
     @Override
     protected CartaoCredito doInBackground(String... param) {
+
         URL url = null;
         try {
             url = new URL("https://service.davesmartins.com.br/api/cartao/"+param[0]+"/"+param[1]+"/"+param[2]+"/"+param[3]+"/"+param[4]);
-            //url = new URL("http://localhost:8080/api/usuarios/login");
+
 
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");

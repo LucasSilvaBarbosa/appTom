@@ -17,7 +17,6 @@ public class ConfirmarAssentoService extends AsyncTask<String,Void,String> {
         URL url = null;
         try {
             url = new URL("https://service.davesmartins.com.br/api/voo/"+param[0]+"/poltronas/"+param[1]);
-            //url = new URL("http://localhost:8080/api/usuarios/login");
 
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setRequestMethod("PUT");

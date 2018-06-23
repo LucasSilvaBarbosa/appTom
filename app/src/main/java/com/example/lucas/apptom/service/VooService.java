@@ -19,7 +19,6 @@ import javax.net.ssl.HttpsURLConnection;
         @Override
         protected Voo doInBackground(String... param) {
 
-            // Create URL
             URL url = null;
             try {
                 url = new URL("https://service.davesmartins.com.br/api/voo/"+param[0]);

@@ -9,20 +9,16 @@ public class Usuario {
     private String login;
     private String nome;
     private String senha;
-    private List<Voo> voos;
-    private CartaoCredito cartao;
 
     public Usuario() {
     }
 
-    public Usuario(String email, int idUsuario, String login, String nome, String senha, CartaoCredito cartao) {
+    public Usuario(String email, int idUsuario, String login, String nome, String senha) {
         this.email = email;
         this.idUsuario = idUsuario;
         this.login = login;
         this.nome = nome;
         this.senha = senha;
-        this.voos = new ArrayList<>();
-        this.cartao = cartao;
     }
 
     public String getEmail() {
@@ -65,20 +61,5 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public List<Voo> getVoos() {
-        return voos;
-    }
-
-    public void setVoos(List<Voo> voos) {
-        this.voos = voos;
-    }
-
-    public CartaoCredito getCartao() {
-        return cartao;
-    }
-
-    public void setCartao(CartaoCredito cartao) {
-        this.cartao = cartao;
-    }
 }
 

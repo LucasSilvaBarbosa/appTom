@@ -24,7 +24,6 @@ public class NovoUsuarioService extends AsyncTask<String,Void,Usuario> {
         URL url = null;
         try {
             url = new URL("https://service.davesmartins.com.br/api/usuarios");
-            //url = new URL("http://localhost:8080/api/usuarios/login");
 
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
