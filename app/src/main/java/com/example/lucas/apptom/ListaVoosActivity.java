@@ -44,7 +44,7 @@ public class ListaVoosActivity extends AppCompatActivity {
         String [] vet = new String [voos.size()];
         int i = 0;
         for(Voo v: voos){
-            vet[i++] = v.getOrigem().getCidade();
+            vet[i++] = "Data do voo: "+v.getDataVoo()+"\n"+"Origem: "+v.getOrigem().getCidade()+"\n"+"Destino: "+v.getDestino().getCidade()+"\n"+"Valor: "+v.getValorPassagem();
         }
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,vet);
 

@@ -68,7 +68,10 @@ public class VooActivity extends AppCompatActivity {
         String [] vet = new String [lista.size()];
         int i = 0;
         for(Poltrona p : lista){
-                vet[i++] = p.getAssento();
+            if(p.isOcupado() == true)
+                vet[i++] = "Assento "+p.getAssento()+" (Ocupado)";
+            else
+                vet[i++] = "Assento "+p.getAssento()+" (Vazio)";
         }
 
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,vet);
@@ -78,15 +81,26 @@ public class VooActivity extends AppCompatActivity {
         lstListaPoltronas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String pol = lista.get(position).getAssento();
 
-                Intent itn = new Intent(getApplicationContext(),CompraPoltronaActivity.class);
+                Poltrona p = lista.get(position);
 
-                itn.putExtra("pol",pol);
-                itn.putExtra("idVoo",idVoo);
-                itn.putExtra("token",token);
+                if(p.isOcupado() == false) {
+                    String pol = lista.get(position).getAssento();
 
-                startActivityForResult(itn,Tela_Voo);
+                    Intent itn = new Intent(getApplicationContext(), CompraPoltronaActivity.class);
+
+                    itn.putExtra("pol", pol);
+                    itn.putExtra("idVoo", idVoo);
+                    itn.putExtra("token", token);
+
+                    startActivityForResult(itn, Tela_Voo);
+
+                    finish();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Assento ocupado , Selecione outro", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

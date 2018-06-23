@@ -32,25 +32,37 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LoginService login = new LoginService();
-                try {
-                    resp = login.execute(edtlogin.getText().toString(), senha.getText().toString()).get();
-                    token = resp.substring(resp.indexOf("token") + 8, resp.indexOf("}") - 1);
-                    if (token != "") {
 
-                        Intent itn = new Intent(getApplicationContext(),ListaVoosActivity.class);
+                if(edtlogin.getText().toString().length() == 0){
+                    edtlogin.setError("Digite o Login!");
+                }
+                else if(senha.getText().toString().length() == 0){
+                    senha.setError("Digite a Senha!");
+                }
 
-                        itn.putExtra("token",token);
+                else {
+                    try {
+                        resp = login.execute(edtlogin.getText().toString(), senha.getText().toString()).get();
 
-                        startActivityForResult(itn,Tela_Principal);
+                        token = resp.substring(resp.indexOf("token") + 8, resp.indexOf("}") - 1);
 
-                        Toast.makeText(getApplicationContext(), "Logou com sucesso", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Não Logou ", Toast.LENGTH_SHORT).show();
+                        if (token != "") {
+
+                            Intent itn = new Intent(getApplicationContext(), ListaVoosActivity.class);
+
+                            itn.putExtra("token", token);
+
+                            startActivityForResult(itn, Tela_Principal);
+
+                            Toast.makeText(getApplicationContext(), "Logou com sucesso", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Não Logou ", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (InterruptedException e) {
+                        Toast.makeText(getApplicationContext(), "Erro no Serviço", Toast.LENGTH_SHORT).show();
+                    } catch (ExecutionException e) {
+                        Toast.makeText(getApplicationContext(), "Erro no Serviço", Toast.LENGTH_SHORT).show();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
                 }
 
             }

@@ -63,7 +63,7 @@
                 <EditText
                     android:id="@+id/edtLogin"
                     style="@style/Widget.AppCompat.EditText"
-                    android:layout_width="match_parent"
+                    android:layout_width="227dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Login"
@@ -78,7 +78,7 @@
 
                 <EditText
                     android:id="@+id/edtSenha"
-                    android:layout_width="match_parent"
+                    android:layout_width="229dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Senha"
