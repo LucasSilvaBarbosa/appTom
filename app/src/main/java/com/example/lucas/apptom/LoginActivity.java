@@ -19,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtlogin,senha;
     final static int Tela_Principal = 15;
     String resp,token = "";
+    String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                     resp = login.execute(edtlogin.getText().toString(), senha.getText().toString()).get();
                     token = resp.substring(resp.indexOf("token") + 8, resp.indexOf("}") - 1);
                     if (token != "") {
+
                         Intent itn = new Intent(getApplicationContext(),ListaVoosActivity.class);
 
                         itn.putExtra("token",token);

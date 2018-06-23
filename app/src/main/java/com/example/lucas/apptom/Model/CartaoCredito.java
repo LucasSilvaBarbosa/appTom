@@ -2,55 +2,55 @@ package com.example.lucas.apptom.Model;
 
 public class CartaoCredito {
 
-    private String id;
-    private String cartao;
-    private int mes;
-    private int ano;
+    private String status;
+    private String numero;
+    private String validade;
+    private String bandeira;
     private String tarja;
     private double valor;
 
     public CartaoCredito() {
     }
 
-    public CartaoCredito(String id, String cartao, int mes, int ano, String tarja, double valor) {
-        this.id = id;
-        this.cartao = cartao;
-        this.mes = mes;
-        this.ano = ano;
+    public CartaoCredito(String status, String numero, String validade, String bandeira, String tarja, double valor) {
+        this.status = status;
+        this.numero = numero;
+        this.validade = validade;
+        this.bandeira = bandeira;
         this.tarja = tarja;
         this.valor = valor;
     }
 
-    public String getId() {
-        return id;
+    public String getStatus() {
+        return status;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getCartao() {
-        return cartao;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setCartao(String cartao) {
-        this.cartao = cartao;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public int getMes() {
-        return mes;
+    public String getValidade() {
+        return validade;
     }
 
-    public void setMes(int mes) {
-        this.mes = mes;
+    public void setValidade(String validade) {
+        this.validade = validade;
     }
 
-    public int getAno() {
-        return ano;
+    public String getBandeira() {
+        return bandeira;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setBandeira(String bandeira) {
+        this.bandeira = bandeira;
     }
 
     public String getTarja() {

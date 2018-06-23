@@ -29,7 +29,8 @@
         <activity android:name=".NovoUsuarioActivity" />
         <activity android:name=".ListaVoosActivity" />
         <activity android:name=".VooActivity" />
-        <activity android:name=".CompraPoltronaActivity"></activity>
+        <activity android:name=".CompraPoltronaActivity" />
+        <activity android:name=".ConfirmaCompraActivity"></activity>
     </application>
 
 </manifest>
