@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.lucas.apptom.Model.Poltrona;
+import com.example.lucas.apptom.Model.Voo;
+import com.example.lucas.apptom.service.PoltronaService;
+import com.example.lucas.apptom.service.VooService;
 
 
 public class CompraPoltronaActivity extends AppCompatActivity {
@@ -13,6 +19,8 @@ public class CompraPoltronaActivity extends AppCompatActivity {
     EditText edtCartao,edtMes,edtAno,edtTarja;
     Button btnComprar;
     TextView txtAssento,txtValor,txtOrigem,txtDestino;
+    Poltrona pol;
+    Voo v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,32 @@ public class CompraPoltronaActivity extends AppCompatActivity {
         idVoo = getIntent().getExtras().getString("idVoo");
 
         poltrona = getIntent().getExtras().getString("pol");
+
+        PoltronaService polService = new PoltronaService();
+
+        VooService vooService = new VooService();
+
+        try{
+            v = vooService.execute(idVoo,token).get();
+
+            txtValor.setText("Valor: "+v.getValorPassagem());
+            txtDestino.setText("Destino: "+v.getDestino().getCidade());
+            txtOrigem.setText("Origem: "+v.getOrigem().getCidade());
+        }
+
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Erro no Serviço", Toast.LENGTH_SHORT).show();
+        }
+
+        try{
+            pol = polService.execute(idVoo,poltrona,token).get();
+
+            txtAssento.setText("Valor: "+pol.getAssento());
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Erro no Serviço", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void binding() {
