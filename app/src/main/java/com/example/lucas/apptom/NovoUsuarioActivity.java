@@ -36,26 +36,42 @@ public class NovoUsuarioActivity extends AppCompatActivity {
         Inserir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    NovoUsuarioService nus = new NovoUsuarioService();
 
-                    Usuario user = nus.execute(edtEmail.getText().toString(), edtLogin.getText().toString(), edtNome.getText().toString(), edtSenha.getText().toString()).get();
-
-                    if(user != null){
-                        Toast.makeText(getApplicationContext(), "Usuario Cadastrado com Sucesso " + user.getNome(), Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(), "Erro" , Toast.LENGTH_SHORT).show();
-                    }
-                    finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
+                if(edtLogin.getText().toString().length() == 0){
+                    edtLogin.setError("Digite o Login!");
                 }
+                else if(edtSenha.getText().toString().length() == 0){
+                    edtSenha.setError("Digite a Senha!");
+                }
+                else if(edtSenha.getText().toString().length() < 3){
+                    edtSenha.setError("Informe pelo menos 3 digitos!");
+                }
+                else if(edtNome.getText().toString().length() == 0){
+                    edtNome.setError("Digite o Nome!");
+                }
+                else if(edtEmail.getText().toString().length() == 0){
+                    edtEmail.setError("Digite o Email!");
+                }
+                else{
+                    try {
+                        NovoUsuarioService nus = new NovoUsuarioService();
 
+                        Usuario user = nus.execute(edtEmail.getText().toString(), edtLogin.getText().toString(), edtNome.getText().toString(), edtSenha.getText().toString()).get();
 
+                        if(user != null){
+                            Toast.makeText(getApplicationContext(), "Usuario Cadastrado com Sucesso ", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "Erro" , Toast.LENGTH_SHORT).show();
+                        }
+                        finish();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
