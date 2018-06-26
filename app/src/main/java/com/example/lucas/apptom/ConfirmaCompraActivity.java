@@ -1,6 +1,5 @@
 package com.example.lucas.apptom;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,7 @@ public class ConfirmaCompraActivity extends AppCompatActivity {
 
     String token,poltrona,idVoo;
     TextView txtData,txtOrigem,txtDestino,txtAssento;
-    Button btnDeslogar;
+    Button btnVoltar;
     Poltrona pol;
     Voo v;
     final static int Tela_Confirma_Compra = 10;
@@ -59,7 +58,7 @@ public class ConfirmaCompraActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Erro no Serviço", Toast.LENGTH_SHORT).show();
         }
 
-        btnDeslogar.setOnClickListener(new View.OnClickListener() {
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -74,7 +73,7 @@ public class ConfirmaCompraActivity extends AppCompatActivity {
         txtData = findViewById(R.id.txtDataConfirmacao);
         txtOrigem = findViewById(R.id.txtOrigemConfirmacao);
         txtDestino = findViewById(R.id.txtDestinoConfirmacao);
-        btnDeslogar = findViewById(R.id.btnDeslogar);
+        btnVoltar = findViewById(R.id.btnVoltarCompra);
         txtAssento = findViewById(R.id.txtAssentoConfirmacao);
 
     }
