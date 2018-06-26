@@ -82,24 +82,25 @@ public class VooActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Poltrona p = lista.get(position);
+                if (!idVoo.equals("1")) {
+                    Toast.makeText(getApplicationContext(), "Assentos desse voo estão indisponiveis ", Toast.LENGTH_SHORT).show();
+                } else {
+                    Poltrona p = lista.get(position);
+                    if (p.isOcupado() == false) {
+                        String pol = lista.get(position).getAssento();
 
-                if(p.isOcupado() == false) {
-                    String pol = lista.get(position).getAssento();
+                        Intent itn = new Intent(getApplicationContext(), CompraPoltronaActivity.class);
 
-                    Intent itn = new Intent(getApplicationContext(), CompraPoltronaActivity.class);
+                        itn.putExtra("pol", pol);
+                        itn.putExtra("idVoo", idVoo);
+                        itn.putExtra("token", token);
 
-                    itn.putExtra("pol", pol);
-                    itn.putExtra("idVoo", idVoo);
-                    itn.putExtra("token", token);
+                        startActivityForResult(itn, Tela_Voo);
 
-                    startActivityForResult(itn, Tela_Voo);
-
-                    finish();
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(), "Assento ocupado , Selecione outro", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Assento ocupado , Selecione outro", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

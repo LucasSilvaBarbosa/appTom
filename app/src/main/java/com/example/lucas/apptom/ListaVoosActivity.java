@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class ListaVoosActivity extends AppCompatActivity {
     ListView lstVoos;
     List<Voo> voos;
     String token;
+    Button btnVoltar;
 
     final static int Tela_Lista_Voos = 20;
 
@@ -66,9 +68,18 @@ public class ListaVoosActivity extends AppCompatActivity {
             }
         });
 
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(Tela_Lista_Voos);
+                finish();
+            }
+        });
+
     }
 
     private void binding() {
         lstVoos = findViewById(R.id.lstListaVoos);
+        btnVoltar = findViewById(R.id.btnVoltar);
     }
 }

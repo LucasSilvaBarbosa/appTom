@@ -5,22 +5,25 @@ import android.os.AsyncTask;
 import com.example.lucas.apptom.Model.Usuario;
 import com.example.lucas.apptom.Model.Voo;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class UsuarioService extends AsyncTask<String,Void,Usuario>{
+public class ListaUsuariosService extends AsyncTask<String,Void,List<Usuario>>{
     @Override
-    protected Usuario doInBackground(String... param) {
+    protected List<Usuario> doInBackground(String... param) {
         URL url = null;
         try {
-            url = new URL("https://service.davesmartins.com.br/api/voo/"+param[0]);
+            url = new URL("https://service.davesmartins.com.br/api/usuarios/all");
 
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
@@ -29,7 +32,6 @@ public class UsuarioService extends AsyncTask<String,Void,Usuario>{
             urlConnection.setDoInput(true);
             urlConnection.setRequestProperty("Accept", "application/json");
             urlConnection.setRequestProperty("Content-Type", "application/json");
-            urlConnection.setRequestProperty("code", param[1]);
             urlConnection.setRequestProperty("X-Environment", "android");
 
             urlConnection.connect();
@@ -51,9 +53,13 @@ public class UsuarioService extends AsyncTask<String,Void,Usuario>{
                 finalJson = urlConnection.getResponseCode() + " " +
                         urlConnection.getResponseMessage();
             }
-            Voo v = new Gson().fromJson(finalJson.toString(), Voo.class);
 
-            return null;
+            Type listType = new TypeToken<List<Usuario>>() {}.getType();
+
+
+            List<Usuario> lista = new Gson().fromJson(finalJson.toString(),listType);
+
+            return lista;
 
         } catch (MalformedURLException e) {
             return null;

@@ -42,11 +42,11 @@ public class NovoUsuarioActivity extends AppCompatActivity {
                     Usuario user = nus.execute(edtEmail.getText().toString(), edtLogin.getText().toString(), edtNome.getText().toString(), edtSenha.getText().toString()).get();
 
                     if(user != null){
-                        Toast.makeText(getApplicationContext(), "Logou: " + user.getNome(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Usuario Cadastrado com Sucesso " + user.getNome(), Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "Não Logou " , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Erro" , Toast.LENGTH_SHORT).show();
                     }
                     finish();
                 } catch (InterruptedException e) {
@@ -63,7 +63,7 @@ public class NovoUsuarioActivity extends AppCompatActivity {
     private void binding() {
 
         Inserir = findViewById(R.id.btnGravar);
-        Voltar = findViewById(R.id.btnVoltar);
+        Voltar = findViewById(R.id.btnVoltarUsuario);
         edtNome = findViewById(R.id.edtUsuarioNome);
         edtEmail = findViewById(R.id.edtUsuarioEmail);
         edtLogin = findViewById(R.id.edtUsuarioLogin);
