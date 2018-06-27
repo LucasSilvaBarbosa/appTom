@@ -1,14 +1,16 @@
 package com.example.lucas.apptom.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private String email;
     private String id;
     private String login;
     private String nome;
     private String senha;
+    private String token;
 
     public Usuario() {
     }
@@ -27,14 +29,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getIdUsuario() {
-        return id;
-    }
-
-    public void setIdUsuario(String id) {
-        this.id = id;
     }
 
     public String getLogin() {
@@ -59,6 +53,22 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }

@@ -2,6 +2,9 @@ package com.example.lucas.apptom.service;
 
 import android.os.AsyncTask;
 
+import com.example.lucas.apptom.Model.Usuario;
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,9 +14,9 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class LoginService extends AsyncTask<String,Void,String> {
+public class LoginService extends AsyncTask<String,Void,Usuario> {
     @Override
-    protected String doInBackground(String... param) {
+    protected Usuario doInBackground(String... param) {
 
 
         URL url = null;
@@ -54,12 +57,14 @@ public class LoginService extends AsyncTask<String,Void,String> {
                 finalJson = urlConnection.getResponseCode()+"";
             }
 
-            return finalJson;
+            Usuario u = new Gson().fromJson(finalJson.toString(),Usuario.class);
+
+            return u;
 
         } catch (MalformedURLException e) {
-            return "Erro1: "+e.getMessage();
+            return null;
         } catch (IOException e) {
-            return "Erro2: "+e.getMessage();
+            return null;
         }
 
     }

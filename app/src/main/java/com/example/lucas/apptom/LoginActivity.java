@@ -8,7 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.lucas.apptom.Model.Usuario;
 import com.example.lucas.apptom.service.LoginService;
+import com.example.lucas.apptom.service.UsuarioService;
 
 import java.util.concurrent.ExecutionException;
 
@@ -18,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtlogin, edtSenha;
     final static int Tela_Principal = 15;
     String resp,token = "";
-    String nome;
+    Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,33 +36,26 @@ public class LoginActivity extends AppCompatActivity {
 
                 LoginService login = new LoginService();
 
-                if(edtlogin.getText().toString().length() == 0){
+                if (edtlogin.getText().toString().length() == 0) {
                     edtlogin.setError("Digite o Login!");
-                }
-                else if(edtSenha.getText().toString().length() == 0){
+                } else if (edtSenha.getText().toString().length() == 0) {
                     edtSenha.setError("Digite a Senha!");
-                }
-
-                else {
+                } else {
                     try {
-                        resp = login.execute(edtlogin.getText().toString(), edtSenha.getText().toString()).get();
+                        user = login.execute(edtlogin.getText().toString(), edtSenha.getText().toString()).get();
 
-                        if(resp.equals("404")){
-                            Toast.makeText(getApplicationContext(), "Login ou Senha Incorretos", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            token = resp.substring(resp.indexOf("token") + 8, resp.indexOf("}") - 1);
+                        if (user != null) {
+                            
+                            Intent itn = new Intent(getApplicationContext(), ListaVoosActivity.class);
 
-                            if (token != "") {
+                            itn.putExtra("usuario", user);
+                            itn.putExtra("token", user.getToken());
 
-                                Intent itn = new Intent(getApplicationContext(), ListaVoosActivity.class);
+                            startActivityForResult(itn, Tela_Principal);
 
-                                itn.putExtra("token", token);
-
-                                startActivityForResult(itn, Tela_Principal);
-
-                                Toast.makeText(getApplicationContext(), "Logou com sucesso", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(getApplicationContext(), "Logou com sucesso "+user.getNome(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Usuario ou Senha invalidos", Toast.LENGTH_SHORT).show();
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -68,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
             }
         });
 

@@ -8,8 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lucas.apptom.Model.Usuario;
 import com.example.lucas.apptom.Model.Voo;
 import com.example.lucas.apptom.service.ListaVoosService;
 
@@ -21,6 +23,8 @@ public class ListaVoosActivity extends AppCompatActivity {
     List<Voo> voos;
     String token;
     Button btnVoltar;
+    Usuario user;
+    TextView usuarioLogado;
 
     final static int Tela_Lista_Voos = 20;
 
@@ -32,9 +36,13 @@ public class ListaVoosActivity extends AppCompatActivity {
 
         binding();
 
+        user = (Usuario) getIntent().getExtras().get("usuario");
+
         token = getIntent().getExtras().getString("token");
 
         ListaVoosService listavoos = new ListaVoosService();
+
+        usuarioLogado.setText("Olá "+user.getNome());
 
         try{
 
@@ -81,5 +89,6 @@ public class ListaVoosActivity extends AppCompatActivity {
     private void binding() {
         lstVoos = findViewById(R.id.lstListaVoos);
         btnVoltar = findViewById(R.id.btnVoltar);
+        usuarioLogado = findViewById(R.id.txtUsuarioLogado);
     }
 }
