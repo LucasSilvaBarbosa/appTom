@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.example.lucas.apptom.Model.Usuario;
 import com.example.lucas.apptom.service.LoginService;
-import com.example.lucas.apptom.service.UsuarioService;
 
 import java.util.concurrent.ExecutionException;
 
@@ -45,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                         user = login.execute(edtlogin.getText().toString(), edtSenha.getText().toString()).get();
 
                         if (user != null) {
-                            
+
                             Intent itn = new Intent(getApplicationContext(), ListaVoosActivity.class);
 
                             itn.putExtra("usuario", user);
