@@ -30,7 +30,8 @@
         <activity android:name=".ListaVoosActivity" />
         <activity android:name=".VooActivity" />
         <activity android:name=".CompraPoltronaActivity" />
-        <activity android:name=".ConfirmaCompraActivity"></activity>
+        <activity android:name=".ConfirmaCompraActivity" />
+        <activity android:name=".HistoricoPassagemActivity"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.lucas.apptom.Model.Usuario;
+import com.example.lucas.apptom.service.ChecaLoginService;
 import com.example.lucas.apptom.service.LoginService;
 
 import java.util.concurrent.ExecutionException;
@@ -34,28 +35,41 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 LoginService login = new LoginService();
+                ChecaLoginService checalogin = new ChecaLoginService();
 
                 if (edtlogin.getText().toString().length() == 0) {
                     edtlogin.setError("Digite o Login!");
                 } else if (edtSenha.getText().toString().length() == 0) {
                     edtSenha.setError("Digite a Senha!");
                 } else {
-                    try {
-                        user = login.execute(edtlogin.getText().toString(), edtSenha.getText().toString()).get();
+                    try{
+                        String resp = checalogin.execute(edtlogin.getText().toString(),edtSenha.getText().toString()).get();
 
-                        if (user != null) {
-
-                            Intent itn = new Intent(getApplicationContext(), ListaVoosActivity.class);
-
-                            itn.putExtra("usuario", user);
-                            itn.putExtra("token", user.getToken());
-
-                            startActivityForResult(itn, Tela_Principal);
-
-                            Toast.makeText(getApplicationContext(), "Logou com sucesso "+user.getNome(), Toast.LENGTH_SHORT).show();
-                        } else {
+                        if(resp.equals("404")){
                             Toast.makeText(getApplicationContext(), "Usuario ou Senha invalidos", Toast.LENGTH_SHORT).show();
                         }
+                        else{
+                            try {
+                                user = login.execute(edtlogin.getText().toString(), edtSenha.getText().toString()).get();
+                                String id = user.getId();
+                                String nome = user.getNome();
+                                    Intent itn = new Intent(getApplicationContext(), ListaVoosActivity.class);
+
+                                    itn.putExtra("id", id);
+                                    itn.putExtra("token", user.getToken());
+                                    itn.putExtra("nome",nome);
+
+                                    startActivityForResult(itn, Tela_Principal);
+
+                                    Toast.makeText(getApplicationContext(), "Logou com sucesso "+user.getNome(), Toast.LENGTH_SHORT).show();
+
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {

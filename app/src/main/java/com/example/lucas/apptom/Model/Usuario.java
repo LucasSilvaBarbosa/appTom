@@ -12,15 +12,46 @@ public class Usuario implements Serializable {
     private String senha;
     private String token;
 
-    public Usuario() {
+    public List<Passagem> getPassagens() {
+        return passagens;
     }
 
-    public Usuario(String email, String id, String login, String nome, String senha) {
+    public void setPassagens(List<Passagem> passagens) {
+        this.passagens = passagens;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    private List<Passagem> passagens;
+    private String peso;
+
+    public Usuario(String email, String id, String login, String nome, String senha, String token,String peso) {
         this.email = email;
         this.id = id;
         this.login = login;
         this.nome = nome;
         this.senha = senha;
+        this.token = token;
+        this.passagens = new ArrayList<>();
+        }
+
+    public Usuario() {
+    }
+
+    public Usuario(String email, String id, String login, String nome, String senha, String token, List<Passagem> passagens) {
+        this.email = email;
+        this.id = id;
+        this.login = login;
+        this.nome = nome;
+        this.senha = senha;
+        this.token = token;
+        this.passagens = passagens;
     }
 
     public String getEmail() {

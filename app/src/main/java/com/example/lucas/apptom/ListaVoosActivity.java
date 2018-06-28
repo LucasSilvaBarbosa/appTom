@@ -22,9 +22,10 @@ public class ListaVoosActivity extends AppCompatActivity {
     ListView lstVoos;
     List<Voo> voos;
     String token;
-    Button btnVoltar;
     Usuario user;
+    Button btnVoltar,btnHistorico;
     TextView usuarioLogado;
+    String id,nome;
 
     final static int Tela_Lista_Voos = 20;
 
@@ -36,18 +37,18 @@ public class ListaVoosActivity extends AppCompatActivity {
 
         binding();
 
-        user = (Usuario) getIntent().getExtras().get("usuario");
+        id = getIntent().getExtras().getString("id");
 
         token = getIntent().getExtras().getString("token");
 
+        nome = getIntent().getExtras().getString("nome");
+
         ListaVoosService listavoos = new ListaVoosService();
 
-        usuarioLogado.setText("Olá "+user.getNome());
+        usuarioLogado.setText("Olá "+nome);
 
         try{
-
             voos = listavoos.execute(token).get();
-
         } catch(Exception e){
             Toast.makeText(getApplicationContext(), "Erro no Serviço", Toast.LENGTH_SHORT).show();
         }
@@ -76,6 +77,18 @@ public class ListaVoosActivity extends AppCompatActivity {
             }
         });
 
+        btnHistorico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent itn = new Intent(getApplicationContext(),HistoricoPassagemActivity.class);
+
+                itn.putExtra("id",id);
+                itn.putExtra("token",token);
+
+                startActivityForResult(itn,Tela_Lista_Voos);
+            }
+        });
+
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,5 +103,6 @@ public class ListaVoosActivity extends AppCompatActivity {
         lstVoos = findViewById(R.id.lstListaVoos);
         btnVoltar = findViewById(R.id.btnVoltar);
         usuarioLogado = findViewById(R.id.txtUsuarioLogado);
+        btnHistorico = findViewById(R.id.btnHistorico);
     }
 }
